@@ -1,0 +1,60 @@
+<h2>Validaciones Reactivas</h2>
+<hr>
+<div class="row">
+    <div class="col">
+<!--Estados de un formulario: 1. Válido; 2. No válido; 3. Pendiente de validación.-->
+        <form autocomplete="off" [formGroup]="formularioRegistro">
+            <!--Nombre-->
+            <div class="row mb-3">
+                <label for="" class="col-sm-3 col-form-label">Nombre</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" placeholder="Nombre de usuario" formControlName="nombre">
+                    <span class="form-text text-danger" *ngIf="campoNoValido('nombre')">Debe de ser en formato de nombre y apellido.</span>
+                </div>
+            </div>
+            <!--Email-->
+            <div class="row mb-3">
+                <label for="" class="col-sm-3 col-form-label">Email</label>
+                <div class="col-sm  -9">
+                    <input type="email" class="form-control" placeholder="Email del usuario" formControlName="email">   
+                    <span class="form-text text-danger" *ngIf="campoNoValido('email')">{{emailErrorMsg}}.</span>
+                    <!--
+                    <span class="form-text text-danger" *ngIf="emailRequired()">El correo es un campo obligatorio.</span>
+                    <span class="form-text text-danger" *ngIf="emailFormat()">El valor ingresado no tiene formato de correo.</span>
+                    <span class="form-text text-danger" *ngIf="emailExists()">El email ingresado ya se encuentra registrado.</span>
+
+                    -->
+                </div>
+            </div>
+            <!--Username-->
+            <div class="row mb-3">
+                <label for="" class="col-sm-3 col-form-label">Username</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" placeholder="Nombre código del usuario" formControlName="username">   
+                    <span class="form-text text-danger" *ngIf="campoNoValido('username')">El username no puede ser strider.</span>
+                </div>
+            </div>
+            <!--Password-->
+            <div class="row mb-3">
+                <label for="" class="col-sm-3 col-form-label">Contraseña</label>
+                <div class="col-sm-9">
+                    <input type="password" class="form-control" placeholder="Contraseña de su cuenta" formControlName="password">   
+                    <span class="form-text text-danger" *ngIf="campoNoValido('password')">La contraseña debe contener al menos 8 caracteres.</span>
+                </div>
+            </div>
+            <!--ConfirmarPassword-->
+            <div class="row mb-3">
+                <label for="" class="col-sm-3 col-form-label">Confirmar contraseña</label>
+                <div class="col-sm-9">
+                    <input type="password" class="form-control" placeholder="Confirmar contraseña" formControlName="confirm_password">
+                    <span class="form-text text-danger" *ngIf="campoNoValido('confirm_password')">Las contraseñas no coinciden.</span>   
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-primary float-end" (click)="submitFormulario()" [disabled]="formularioRegistro.pending">Crear</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
